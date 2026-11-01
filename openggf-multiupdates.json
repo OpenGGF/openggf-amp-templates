@@ -1,0 +1,40 @@
+[
+    {
+        "UpdateStageName": "Java 25 Download",
+        "UpdateSourcePlatform": "Linux",
+        "UpdateSourceArch": "x86_64",
+        "UpdateSource": "Executable",
+        "UpdateSourceData": "/bin/bash",
+        "UpdateSourceArgs": "-c \"cd openggf-multi && if [[ -x java/bin/java ]]; then Installed=$(java/bin/java --version | grep 'Temurin-' | head -n1 | sed -n 's/.*Temurin-\\([^[:space:]]\\+\\).*/\\1/p'); else Installed=''; fi; Latest=$(wget -qO- 'https://api.adoptium.net/v3/assets/latest/25/hotspot?architecture=x64&image_type=jre&os=linux&vendor=eclipse' | jq -r '.[0].version.openjdk_version' | sed 's/-LTS$//'); if [[ -n \\\"$Latest\\\" && \\\"$Installed\\\" == \\\"$Latest\\\" ]]; then echo \\\"Eclipse Temurin JRE $Latest already installed\\\"; exit 0; fi; rm -f java.tar.gz; wget -qO java.tar.gz https://api.adoptium.net/v3/binary/latest/25/ga/linux/x64/jre/hotspot/normal/eclipse || { echo 'Temurin download failed'; exit 1; }; rm -rf java && mkdir -p java && tar -xzf java.tar.gz -C java --strip-components=1 && rm -f java.tar.gz && java/bin/java --version | head -n1\"",
+        "SkipOnFailure": false
+    },
+    {
+        "UpdateStageName": "Remove Previous Server Build",
+        "UpdateSourcePlatform": "Linux",
+        "UpdateSource": "Executable",
+        "UpdateSourceData": "/bin/bash",
+        "UpdateSourceArgs": "-c \"rm -rf openggf-multi/server && mkdir -p openggf-multi/server\"",
+        "SkipOnFailure": false
+    },
+    {
+        "UpdateStageName": "Server Download",
+        "UpdateSourcePlatform": "All",
+        "UpdateSource": "FetchURL",
+        "UpdateSourceData": "https://github.com/OpenGGF/OpenGGF/releases/download/{{ReleaseTag}}/openggf-racing-server.zip",
+        "UpdateSourceTarget": "{{$FullBaseDir}}server",
+        "UnzipUpdateSource": true,
+        "OverwriteExistingFiles": true,
+        "DeleteAfterExtract": true,
+        "SkipOnFailure": false
+    },
+    {
+        "UpdateStageName": "Pre-start Script Download",
+        "UpdateSourcePlatform": "All",
+        "UpdateSource": "FetchURL",
+        "UpdateSourceData": "https://raw.githubusercontent.com/OpenGGF/openggf-amp-templates/main/openggf-multi-prestart.sh",
+        "UpdateSourceTarget": "{{$FullBaseDir}}",
+        "UnzipUpdateSource": false,
+        "OverwriteExistingFiles": true,
+        "SkipOnFailure": false
+    }
+]

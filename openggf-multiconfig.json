@@ -1,0 +1,73 @@
+[
+    {
+        "DisplayName": "Release Channel",
+        "Category": "OpenGGF:sports_esports",
+        "Subcategory": "Server:dns:1",
+        "Description": "OpenGGF branch build to install. Each branch's CI publishes a rolling GitHub prerelease. Update the instance after changing this",
+        "Keywords": "release,channel,branch,ReleaseTag",
+        "FieldName": "ReleaseTag",
+        "InputType": "enum",
+        "ParamFieldName": "ReleaseTag",
+        "DefaultValue": "multi-dev-latest",
+        "EnumValues": {
+            "multi-latest": "master (multi.openggf.com)",
+            "multi-dev-latest": "develop (multi-dev.openggf.com)",
+            "multi-next-latest": "next (multi-next.openggf.com)"
+        }
+    },
+    {
+        "DisplayName": "Chat Mode Limit",
+        "Category": "OpenGGF:sports_esports",
+        "Subcategory": "Server:dns:1",
+        "Description": "Maximum communication in master-hosted relay rooms. Room owners may restrict further",
+        "Keywords": "chat,mode,ChatModeLimit",
+        "FieldName": "ChatModeLimit",
+        "InputType": "enum",
+        "ParamFieldName": "ChatModeLimit",
+        "DefaultValue": "QUICK_CHAT",
+        "EnumValues": {
+            "FULL_CHAT": "Typed and quick chat",
+            "QUICK_CHAT": "Quick chat only",
+            "OFF": "Off"
+        }
+    },
+    {
+        "DisplayName": "Java Heap (MB)",
+        "Category": "OpenGGF:sports_esports",
+        "Subcategory": "Server:dns:1",
+        "Description": "Maximum Java heap for the master. Restart to apply",
+        "Keywords": "heap,memory,HeapMB",
+        "FieldName": "HeapMB",
+        "InputType": "number",
+        "MinValue": "256",
+        "ParamFieldName": "HeapMB",
+        "DefaultValue": "1024",
+        "EnumValues": {}
+    },
+    {
+        "DisplayName": "Recording Retention (days)",
+        "Category": "OpenGGF:sports_esports",
+        "Subcategory": "Server:dns:1",
+        "Description": "Days to keep uploaded attempt recordings",
+        "Keywords": "recording,retention,RecordingRetentionDays",
+        "FieldName": "RecordingRetentionDays",
+        "InputType": "number",
+        "MinValue": "1",
+        "ParamFieldName": "RecordingRetentionDays",
+        "DefaultValue": "3",
+        "EnumValues": {}
+    },
+    {
+        "DisplayName": "Recording Storage Limit (MB)",
+        "Category": "OpenGGF:sports_esports",
+        "Subcategory": "Server:dns:1",
+        "Description": "Maximum disk space for retained recordings",
+        "Keywords": "recording,storage,MaxRecordingStorageMB",
+        "FieldName": "MaxRecordingStorageMB",
+        "InputType": "number",
+        "MinValue": "16",
+        "ParamFieldName": "MaxRecordingStorageMB",
+        "DefaultValue": "512",
+        "EnumValues": {}
+    }
+]

@@ -1,0 +1,9 @@
+[
+    {
+        "Protocol": "TCP",
+        "Port": 27910,
+        "Ref": "MasterPort",
+        "Name": "Master Port",
+        "Description": "TLS WebSocket port for players and verifiers (wss://host:port/master). The loopback-only admin listener uses this port + 1"
+    }
+]
