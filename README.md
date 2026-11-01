@@ -23,7 +23,7 @@ uploads) from the `racing/` tree of [OpenGGF](https://github.com/OpenGGF/OpenGGF
   verifier tokens under `secrets/` on first start and writes `master.yaml` from the
   AMP settings, then starts `racing-server master`.
 - The master terminates TLS itself on the Master Port. The admin listener binds
-  127.0.0.1 on Master Port + 1 and must not be exposed.
+  127.0.0.1 on the reserved Admin Port and is never reachable remotely.
 - TLS files are not part of the template. Install `tls/fullchain.pem` and
   `tls/privkey.pem` in the instance's `openggf-multi/` directory, readable by the
   AMP user, and restart after renewal. On the OpenGGF testbed a certbot deploy

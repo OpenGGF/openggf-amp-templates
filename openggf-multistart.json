@@ -4,7 +4,7 @@
         "UpdateSourcePlatform": "Linux",
         "UpdateSource": "Executable",
         "UpdateSourceData": "/bin/bash",
-        "UpdateSourceArgs": "\"{{$FullBaseDir}}openggf-multi-prestart.sh\" \"{{$FullBaseDir}}\" {{$MasterPort}} {{ChatModeLimit}} {{RecordingRetentionDays}} {{MaxRecordingStorageMB}}",
+        "UpdateSourceArgs": "\"{{$FullBaseDir}}openggf-multi-prestart.sh\" \"{{$FullBaseDir}}\" {{$MasterPort}} {{$AdminPort}} {{ChatModeLimit}} {{RecordingRetentionDays}} {{MaxRecordingStorageMB}}",
         "SkipOnFailure": false
     }
 ]

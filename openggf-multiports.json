@@ -4,6 +4,13 @@
         "Port": 27910,
         "Ref": "MasterPort",
         "Name": "Master Port",
-        "Description": "TLS WebSocket port for players and verifiers (wss://host:port/master). The loopback-only admin listener uses this port + 1"
+        "Description": "TLS WebSocket port for players and verifiers (wss://host:port/master)"
+    },
+    {
+        "Protocol": "TCP",
+        "Port": 27911,
+        "Ref": "AdminPort",
+        "Name": "Admin Port (loopback)",
+        "Description": "Reserved for the master's admin listener, which binds 127.0.0.1 only and is never reachable remotely"
     }
 ]

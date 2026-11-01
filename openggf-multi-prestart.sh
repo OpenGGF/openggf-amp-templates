@@ -3,13 +3,13 @@
 #
 # Purpose: create per-instance secrets and write master.yaml from the AMP settings
 # before every start, so settings changes apply on restart.
-# Inputs:  <base dir> <master port> <chat mode limit> <retention days> <storage MB>
+# Inputs:  <base dir> <master port> <admin port> <chat mode limit> <retention days> <storage MB>
 # TLS files are installed by the host's certbot deploy hook into <base>/tls/.
 # Origin:  OpenGGF multiplayer testbed setup, 2026-11-01.
 set -euo pipefail
-base="$1"; port="$2"; chat="$3"; days="$4"; storage_mb="$5"
-[[ "$port" =~ ^[0-9]+$ && "$days" =~ ^[0-9]+$ && "$storage_mb" =~ ^[0-9]+$ ]] \
-  || { echo "OpenGGF: invalid numeric setting (port=$port days=$days storage=$storage_mb)" >&2; exit 1; }
+base="$1"; port="$2"; admin_port="$3"; chat="$4"; days="$5"; storage_mb="$6"
+[[ "$port" =~ ^[0-9]+$ && "$admin_port" =~ ^[0-9]+$ && "$days" =~ ^[0-9]+$ && "$storage_mb" =~ ^[0-9]+$ ]] \
+  || { echo "OpenGGF: invalid numeric setting (port=$port admin=$admin_port days=$days storage=$storage_mb)" >&2; exit 1; }
 case "$chat" in FULL_CHAT|QUICK_CHAT|OFF) ;; *) echo "OpenGGF: invalid chat mode $chat" >&2; exit 1 ;; esac
 cd "$base"
 umask 077
@@ -28,7 +28,7 @@ tlsKeyPath: ${base}tls/privkey.pem
 plaintextForTest: false
 chatModeLimit: "$chat"
 dbPath: master-identities.db
-adminPort: $((port + 1))
+adminPort: $admin_port
 adminTokenFile: ${base}secrets/admin-token
 verifierRegistrationTokenFile: ${base}secrets/verifier-token
 publicBaseUrl: ""
@@ -37,4 +37,4 @@ verifierLeaseSeconds: 300
 maxRecordingStorageBytes: $((storage_mb * 1024 * 1024))
 recordingRetentionDays: $days
 YAML
-echo "OpenGGF: master.yaml written (port $port, admin 127.0.0.1:$((port + 1)), chat $chat)"
+echo "OpenGGF: master.yaml written (port $port, admin 127.0.0.1:$admin_port, chat $chat)"
